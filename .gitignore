@@ -1,0 +1,13 @@
+.Xil/
+.direnv/
+.venv/
+.ropeproject/
+build/
+**.out
+**.o
+**.d
+**.bin
+**.fbi
+**.lst
+
+

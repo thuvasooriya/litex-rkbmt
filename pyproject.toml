@@ -1,0 +1,85 @@
+[project]
+name = "litex-rkbmt"
+version = "0.1.0"
+description = "litex rocket baremetal template"
+readme = "readme.md"
+requires-python = ">=3.11"
+dependencies = [
+    "litex",
+    "migen",
+    "litedram",
+    "liteeth",
+    "liteiclink",
+    "litejesd204b",
+    "litepcie",
+    "litesata",
+    "litescope",
+    "litesdcard",
+    "litespi",
+    "litex-boards",
+    "pythondata-cpu-lm32",
+    "pythondata-cpu-mor1kx",
+    "pythondata-cpu-naxriscv",
+    "pythondata-cpu-rocket",
+    "pythondata-cpu-serv",
+    "pythondata-cpu-vexiiriscv",
+    "pythondata-cpu-vexriscv",
+    "pythondata-cpu-vexriscv-smp",
+    "pythondata-misc-tapcfg",
+    "pythondata-misc-usb-ohci",
+    "pythondata-software-compiler-rt",
+    "pythondata-software-picolibc",
+]
+
+[tool.uv.sources]
+migen = { git = "https://github.com/m-labs/migen" }
+litex = { git = "https://github.com/enjoy-digital/litex" }
+litedram = { git = "https://github.com/enjoy-digital/litedram" }
+liteeth = { git = "https://github.com/enjoy-digital/liteeth" }
+litesdcard = { git = "https://github.com/enjoy-digital/litesdcard" }
+litesata = { git = "https://github.com/enjoy-digital/litesata" }
+litescope = { git = "https://github.com/enjoy-digital/litescope" }
+liteiclink = { git = "https://github.com/enjoy-digital/liteiclink" }
+litepcie = { git = "https://github.com/enjoy-digital/litepcie" }
+litejesd204b = { git = "https://github.com/enjoy-digital/litejesd204b" }
+litespi = { git = "https://github.com/litex-hub/litespi" }
+litei2c = { git = "https://github.com/litex-hub/litei2c" }
+litex-boards = { git = "https://github.com/litex-hub/litex-boards" }
+pythondata-cpu-rocket = { git = "https://github.com/litex-hub/pythondata-cpu-rocket" }
+pythondata-software-picolibc = { git = "https://github.com/litex-hub/pythondata-software-picolibc" }
+pythondata-software-compiler-rt = { git = "https://github.com/litex-hub/pythondata-software-compiler_rt" }
+pythondata-misc-tapcfg = { git = "https://github.com/litex-hub/pythondata-misc-tapcfg" }
+pythondata-misc-usb-ohci = { git = "https://github.com/litex-hub/pythondata-misc-usb_ohci" }
+pythondata-cpu-blackparrot = { git = "https://github.com/litex-hub/pythondata-cpu-blackparrot" }
+pythondata-cpu-cv32e41p = { git = "https://github.com/litex-hub/pythondata-cpu-cv32e41p" }
+pythondata-cpu-cv32e40p = { git = "https://github.com/litex-hub/pythondata-cpu-cv32e40p" }
+pythondata-cpu-cva5 = { git = "https://github.com/litex-hub/pythondata-cpu-cva5" }
+pythondata-cpu-cva6 = { git = "https://github.com/litex-hub/pythondata-cpu-cva6" }
+pythondata-cpu-ibex = { git = "https://github.com/litex-hub/pythondata-cpu-ibex" }
+pythondata-cpu-minerva = { git = "https://github.com/litex-hub/pythondata-cpu-minerva" }
+pythondata-cpu-naxriscv = { git = "https://github.com/litex-hub/pythondata-cpu-naxriscv" }
+pythondata-cpu-picorv32 = { git = "https://github.com/litex-hub/pythondata-cpu-picorv32" }
+pythondata-cpu-serv = { git = "https://github.com/litex-hub/pythondata-cpu-serv" }
+pythondata-cpu-vexriscv = { git = "https://github.com/litex-hub/pythondata-cpu-vexriscv" }
+pythondata-cpu-vexriscv-smp = { git = "https://github.com/litex-hub/pythondata-cpu-vexriscv-smp" }
+pythondata-cpu-vexiiriscv = { git = "https://github.com/litex-hub/pythondata-cpu-vexiiriscv" }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
