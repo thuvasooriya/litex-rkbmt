@@ -11,21 +11,21 @@ simrr: clean bsim_rocket bbm_rocket fbsim_rocket
 
 # build simulation for rocket
 bsim_rocket:
-    litex_sim \
+    uv run litex_sim \
     --cpu-type=rocket --cpu-variant=full \
     --no-compile-gateware \
     --with-sdram \
 
 # build baremetal software for rocket
 bbm_rocket:
-    demo/build.py \
+    uv run demo/build.py \
     --build-path=build/sim \
     --src-path=demo \
     # --mem=rom \
 
 # final build sim for rocket
 fbsim_rocket:
-    litex_sim \
+    uv run litex_sim \
     --cpu-type=rocket --cpu-variant=full \
     --with-sdram \
     --sdram-init=demo/demo.bin
