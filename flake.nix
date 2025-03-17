@@ -12,9 +12,11 @@
   }: let
     inherit (nixpkgs) lib;
     system = "aarch64-darwin";
+    overlay = import ./overlay.nix;
 
     pkgs = import nixpkgs {
       inherit system;
+      overlays = [overlay];
     };
 
     deps = with pkgs; [
@@ -47,7 +49,7 @@
       nextpnr
 
       qemu
-      # spike
+      spike
     ];
   in {
     legacyPackages.${system} = pkgs;
@@ -59,4 +61,6 @@
       };
     };
   };
+
+  overlays.default = overlay;
 }
