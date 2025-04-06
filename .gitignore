@@ -9,7 +9,6 @@ build/
 **.bin
 **.fbi
 **.lst
-**.S
 **.elf
 **.elf.map
 .python-version
