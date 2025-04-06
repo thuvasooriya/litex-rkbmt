@@ -22,19 +22,17 @@
     deps = with pkgs; [
       git
       autoconf
-      # automake
-      # mill
+      automake
+      mill
       dtc
       boost
-      # cmake
+      cmake
       ninja
       pkgsCross.riscv64-embedded.buildPackages.gcc
-      # pkgsCross.riscv64-embedded.buildPackages.gdb
-      openocd
-      # spike
 
       ### litex dependencies ###
-      # python312
+      python312
+      python312Packages.pygments
       uv
       expat
       fakeroot
@@ -48,8 +46,14 @@
       trellis
       nextpnr
 
+      ### debug tools ###
+      openocd
       qemu
+      cutter
       spike
+      # gdb
+      # lldb
+      pkgsCross.riscv64-embedded.buildPackages.gdb
     ];
   in {
     legacyPackages.${system} = pkgs;
@@ -60,7 +64,6 @@
         RV64_TOOLCHAIN_ROOT = "${pkgs.pkgsCross.riscv64-embedded.buildPackages.gcc}";
       };
     };
+    overlays.default = overlay;
   };
-
-  overlays.default = overlay;
 }

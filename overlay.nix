@@ -1,11 +1,4 @@
 final: prev: {
-  # mill = prev.mill.overrideAttrs (oldAttrs: rec {
-  #   version = "0.11.1";
-  #   src = prev.fetchurl {
-  #     url = "https://github.com/com-lihaoyi/mill/releases/download/${version}/${version}-assembly";
-  #     hash = "sha256-qG+Ddn0BHUZX1VX5hO84exgRz8YuUgYF/fH6MmgkrXE=";
-  #   };
-  # });
   # spike compiles fine on darwin-aarch64
   spike = prev.spike.overrideAttrs (oldAttrs: rec {
     version = "0.13";
@@ -13,12 +6,25 @@ final: prev: {
       owner = "riscv";
       repo = "riscv-isa-sim";
       rev = "3f79e3b7ded80d9ef0e722126b3765207e010711";
-      # sha256 = "sha256-mAgR2VzDgeuIdmPEgrb+MaA89BnWfmNanOVidqn0cgc=";
+      sha256 = "sha256-SGS7OGepfLBqJMpRpmtdHacvyJZXMbvu008Xw9tDW4A=";
     };
     meta = with prev.lib; {
-      platforms = prev.lib.platforms.all;
+      platforms = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
     };
   });
+
+  # mill = prev.mill.overrideAttrs (oldAttrs: rec {
+  #   version = "0.11.1";
+  #   src = prev.fetchurl {
+  #     url = "https://github.com/com-lihaoyi/mill/releases/download/${version}/${version}-assembly";
+  #     hash = "sha256-qG+Ddn0BHUZX1VX5hO84exgRz8YuUgYF/fH6MmgkrXE=";
+  #   };
+  # });
+
   # TODO: fix riscv tests compilation in darwin
   #
   # riscvTests = final.pkgsCross.riscv64-embedded.stdenv.mkDerivation rec {

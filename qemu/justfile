@@ -1,0 +1,58 @@
+RVTC_PREFIX := "riscv64-unknown-elf"
+
+@default:
+    @just --list
+
+# pure asm hello world
+t1:
+    cd t1 && make run
+
+t2:
+    cd t2 && make run
+
+t3:
+    cd t3 && make run
+
+t4:
+    cd t4 && make run
+
+t5:
+    cd t5 && make run
+
+# TODO: cleanup and extract useful info
+# qemuh:
+#     #! /bin/bash
+#     cd qemu/hello
+#     {{ RVTC_PREFIX }}-as -march=rv64i2p0_mafdc -mabi=lp64 -o hello.o -c hello.s
+#     {{ RVTC_PREFIX }}-ld -T linker.ld --no-dynamic-linker -m elf64lriscv -static -nostdlib -s -o hello.out hello.o
+#     qemu-system-riscv64 -nographic -machine virt -bios hello.out -S -gdb tcp::1234
+#
+# qemuhe:
+#     #! /bin/bash
+#     cd qemu/hello
+#     {{ RVTC_PREFIX }}-gcc -g -O0 -march=rv64i2p0_mafdc -mabi=lp64 \
+#     -Wl,--gc-sections \
+#     -Wl,-nostdlib -nodefaultlibs \
+#     -Wl,-m elf64lriscv -s \
+#     -Wl,-T,linker.ld hello.s \
+#     -o hello.out
+#     qemu-system-riscv64 -nographic -machine virt -bios hello.out -S -gdb tcp::1234
+#
+# qemuhw:
+#     #! /bin/bash
+#     cd qemu/hw
+#     make run
+#
+# qvirt:
+#     #! /bin/bash
+#     cd qemu/virt
+#     {{ RVTC_PREFIX }}-gcc -march=rv64i2p0_mafdc -mabi=lp64d -g -ffreestanding -O0 \
+#     -Wl,--gc-sections -nostartfiles -nostdlib -nodefaultlibs \
+#     -Wl,-T,linker.ld crt0.s add.c
+#     # qemu-system-riscv64 -nographic -machine virt -m 128M -gdb tcp::1234 -S -bios none -kernel a.out
+#     qemu-system-riscv64 -nographic -machine virt -m 128M -bios none -kernel a.out
+#
+# qgdb dir:
+#     #! /bin/bash
+#     cd qemu/{{ dir }}
+#     {{ RVTC_PREFIX }}-gdb {{ dir }}.img -x .gdbinit
