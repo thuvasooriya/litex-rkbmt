@@ -3,11 +3,13 @@ BUILD_DIR?=build
 include $(BUILD_DIR)/software/include/generated/variables.mak
 include $(SOC_DIRECTORY)/software/common.mak
 
-OBJECTS   = helloc.o calc.o crt0.o main.o
-# CFLAGS += -DWITH_CXX
-# CFLAGS += -Dformat-default=double
-# CFLAGS += -Dformat-default=float
-# CFLAGS += -u _printf_float
+OBJECTS   = helloc.o test.o crt0.o main.o
+
+CFLAGS += -O0
+CFLAGS += -g -v
+# CFLAGS += -Dformat-default=f
+# CFLAGS += -D__riscv_flen
+
 
 all: demo.bin
 

@@ -1,0 +1,84 @@
+RVTC_PREFIX := "riscv64-unknown-elf"
+
+# the following prefix is used with nix flakes
+# RVTC_PREFIX := "riscv64-none-elf"
+
+default:
+    just --list
+
+# TODO: reduce number of stages?
+
+# rocket simulation
+simr: bsim_rocket bbm_rocket fbsim_rocket
+
+# full reset rocket sim
+simrr: clean bsim_rocket bbm_rocket fbsim_rocket
+
+simba: bsim_rocket bbm_rba fbsim_rba
+
+simbar: cleanba bsim_rocket bbm_rba fbsim_rba
+
+# build simulation for rocket
+bsim_rocket:
+    uv run litex_sim \
+    --cpu-type=rocket --cpu-variant=full \
+    --no-compile-gateware \
+    --with-sdram \
+    # --integrated-main-ram-size=0x10000 \
+
+# build baremetal software for rocket
+bbm_rocket:
+    uv run demo/build.py \
+    --build-path=build/sim \
+    --src-path=demo \
+    # --mem=rom \
+
+bbm_rba:
+    uv run ba/build.py \
+    --build-path=build/sim \
+    --src-path=ba \
+    # --mem=rom \
+
+# final build sim for rocket
+fbsim_rocket:
+    uv run litex_sim \
+    --cpu-type=rocket --cpu-variant=full \
+    --with-sdram \
+    --sdram-init=demo/demo.bin
+    # --ram-init=demo/demo.bin \
+    # --integrated-main-ram-size=0x10000 \
+
+fbsim_rba:
+    uv run litex_sim \
+    --cpu-type=rocket --cpu-variant=full \
+    --with-sdram \
+    --sdram-init=ba/demo.bin
+
+clean:
+    rm -rf build
+    rm -f demo/**.d
+    rm -f demo/**.o
+    rm -f demo/**.bin
+    rm -f demo/**.fbi
+    rm -f demo/**.lst
+    rm -f demo/**.elf**
+    rm -f demo/**.S
+
+cleanba:
+    rm -rf build
+    rm -f ba/**.d
+    rm -f ba/**.o
+    rm -f ba/**.bin
+    rm -f ba/**.fbi
+    rm -f ba/**.lst
+    rm -f ba/**.elf**
+    rm -f ba/**.S
+
+# helper scripts
+# litex_build_py src:
+#     {{ src }}/build.py \
+#     --build-path=build/sim \
+#     --src-path={{ src }} \
+
+dump file:
+    {{ RVTC_PREFIX }}-objdump -D {{ file }}

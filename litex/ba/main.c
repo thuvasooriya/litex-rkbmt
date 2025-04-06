@@ -83,10 +83,7 @@ static void help(void) {
   puts("led                - Led demo");
 #endif
   puts("helloc             - hello c");
-  puts("calc               - calc");
-#ifdef WITH_CXX
-  puts("hellocpp           - Hello C++");
-#endif
+  puts("test               - test.c execution");
 }
 
 /*-----------------------------------------------------------------------*/
@@ -133,11 +130,11 @@ static void helloc_cmd(void) {
   helloc();
 }
 
-extern void calc(void);
+extern void testmain(void);
 
-static void calc_cmd(void) {
-  printf("calc demo...\n");
-  calc();
+static void test_cmd(void) {
+  printf("test.c execution...\n");
+  testmain();
 }
 
 /*-----------------------------------------------------------------------*/
@@ -162,8 +159,8 @@ static void console_service(void) {
 #endif
   else if (strcmp(token, "helloc") == 0)
     helloc_cmd();
-  else if (strcmp(token, "calc") == 0)
-    calc_cmd();
+  else if (strcmp(token, "test") == 0)
+    test_cmd();
   prompt();
 }
 
@@ -172,6 +169,8 @@ int main(void) {
   irq_setmask(0);
   irq_setie(1);
 #endif
+  // intialize fpu
+  csrs(mstatus, (1 << 13));
   uart_init();
 
   help();
